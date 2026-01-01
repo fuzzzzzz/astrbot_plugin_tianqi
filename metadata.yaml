@@ -1,8 +1,8 @@
 # AstrBot 插件元数据文件
-name: "智能天气助手"
+name: "astrbot_plugin_tianqi"
 version: "1.0.0"
 author: "fuz"
-description: "提供全面的天气信息服务，包括当前天气、预报、活动推荐和天气警报功能"
+description: "提供全面的天气信息服务，包括当前天气、预报、活动推荐和天气"
 repo: "https://github.com/fuzzzzzz/astrbot_plugin_tianqi"
 license: "MIT"
 
