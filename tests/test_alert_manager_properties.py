@@ -123,12 +123,7 @@ class TestAlertManagerProperties:
                 alert = self._create_test_weather_alert(alert_type, f"Location_{alert_type.value}")
                 
                 # 使用asyncio运行异步方法
-                loop = asyncio.new_event_loop()
-                asyncio.set_event_loop(loop)
-                try:
-                    loop.run_until_complete(alert_manager.send_alert(user_id, alert))
-                finally:
-                    loop.close()
+                asyncio.run(alert_manager.send_alert(user_id, alert))
                 
                 sent_alerts.append(alert)
             
@@ -275,27 +270,21 @@ class TestAlertManagerProperties:
             alert = self._create_test_weather_alert(alert_type, location)
             
             # 第一次发送警报
-            loop = asyncio.new_event_loop()
-            asyncio.set_event_loop(loop)
-            try:
-                loop.run_until_complete(alert_manager.send_alert(user_id, alert))
-                
-                # 立即再次发送相同类型的警报
-                # 由于抑制机制，第二次发送应该被跳过
-                initial_history_count = len(alert_manager.get_alert_history(user_id))
-                
-                # 创建另一个相同类型的警报
-                second_alert = self._create_test_weather_alert(alert_type, location)
-                loop.run_until_complete(alert_manager.send_alert(user_id, second_alert))
-                
-                # 验证历史记录没有增加（被抑制了）
-                final_history_count = len(alert_manager.get_alert_history(user_id))
-                
-                # 由于抑制机制，历史记录应该只增加1（第一次发送）
-                assert final_history_count == initial_history_count
-                
-            finally:
-                loop.close()
+            asyncio.run(alert_manager.send_alert(user_id, alert))
+            
+            # 立即再次发送相同类型的警报
+            # 由于抑制机制，第二次发送应该被跳过
+            initial_history_count = len(alert_manager.get_alert_history(user_id))
+            
+            # 创建另一个相同类型的警报
+            second_alert = self._create_test_weather_alert(alert_type, location)
+            asyncio.run(alert_manager.send_alert(user_id, second_alert))
+            
+            # 验证历史记录没有增加（被抑制了）
+            final_history_count = len(alert_manager.get_alert_history(user_id))
+            
+            # 由于抑制机制，历史记录应该只增加1（第一次发送）
+            assert final_history_count == initial_history_count
             
         finally:
             self._cleanup_temp_db(db_path)
@@ -398,13 +387,8 @@ class TestAlertManagerProperties:
             recent_alert = self._create_test_weather_alert(AlertType.TEMPERATURE_CHANGE, location)
             
             # 发送警报以创建历史记录
-            loop = asyncio.new_event_loop()
-            asyncio.set_event_loop(loop)
-            try:
-                loop.run_until_complete(alert_manager.send_alert(user_id, old_alert))
-                loop.run_until_complete(alert_manager.send_alert(user_id, recent_alert))
-            finally:
-                loop.close()
+            asyncio.run(alert_manager.send_alert(user_id, old_alert))
+            asyncio.run(alert_manager.send_alert(user_id, recent_alert))
             
             # 获取清理前的记录数
             initial_history = alert_manager.get_alert_history(user_id)

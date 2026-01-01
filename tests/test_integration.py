@@ -42,7 +42,9 @@ class TestWeatherPluginIntegration:
     @pytest.fixture
     def weather_plugin(self, test_config):
         """天气插件实例"""
-        return WeatherPlugin(test_config)
+        plugin = WeatherPlugin(test_config)
+        yield plugin
+        plugin.close()
     
     @pytest.fixture
     def mock_message_event(self):
