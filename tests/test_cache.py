@@ -38,12 +38,6 @@ def cache_manager(temp_config):
     yield manager
     # 确保所有连接都关闭
     manager.close()
-    # 强制垃圾回收以释放SQLite连接
-    import gc
-    gc.collect()
-    # 给Windows一点时间释放文件句柄
-    import time
-    time.sleep(0.1)
 
 
 @pytest.fixture

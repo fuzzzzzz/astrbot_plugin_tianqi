@@ -140,7 +140,7 @@ class TestLocalizationIntegration:
         languages = manager.get_available_languages()
         
         # 应该至少有一种语言
-        assert len(languages) >= 0
+        assert len(languages) > 0
     
     def test_required_keys_exist(self):
         """测试必需的键存在"""

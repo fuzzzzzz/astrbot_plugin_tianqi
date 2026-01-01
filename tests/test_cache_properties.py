@@ -514,27 +514,3 @@ class TestCacheManagerProperties:
         finally:
             cache_manager.close()
             self._cleanup_temp_db(db_path)
-
-
-# 运行属性测试的辅助函数
-def run_cache_property_tests():
-    """运行所有缓存属性测试"""
-    import subprocess
-    import sys
-    
-    result = subprocess.run([
-        sys.executable, "-m", "pytest", 
-        "tests/test_cache_properties.py", 
-        "-v", "--tb=short"
-    ], capture_output=True, text=True)
-    
-    return result.returncode == 0, result.stdout, result.stderr
-
-
-if __name__ == "__main__":
-    # 直接运行时执行属性测试
-    success, stdout, stderr = run_cache_property_tests()
-    print(stdout)
-    if stderr:
-        print("STDERR:", stderr)
-    exit(0 if success else 1)

@@ -34,7 +34,7 @@ def check_directory_exists(dirpath: str, description: str) -> bool:
 def check_python_import(module_name: str, description: str) -> bool:
     """检查 Python 模块是否可以导入"""
     try:
-        __import__(module_name)
+        importlib.import_module(module_name)
         print(f"✅ {description}: {module_name}")
         return True
     except ImportError as e:
