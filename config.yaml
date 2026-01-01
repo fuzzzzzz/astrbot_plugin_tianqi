@@ -1,0 +1,22 @@
+# 天气插件配置文件
+# 复制此文件并根据需要修改配置
+
+# API 配置
+api_provider: "openweathermap"  # 支持: openweathermap, weatherapi
+api_key: ""  # 在此处填入您的 API 密钥
+api_base_url: ""  # 可选，自定义 API 基础 URL
+
+# 缓存配置
+cache_enabled: true
+cache_db_path: "weather_cache.db"
+cache_ttl_current: 600    # 当前天气缓存时间（秒）
+cache_ttl_forecast: 3600  # 预报缓存时间（秒）
+cache_ttl_hourly: 1800    # 小时预报缓存时间（秒）
+
+# 默认设置
+default_units: "metric"     # metric 或 imperial
+default_language: "zh"      # 语言代码
+
+# API 限制
+rate_limit_per_minute: 60
+rate_limit_per_day: 1000
