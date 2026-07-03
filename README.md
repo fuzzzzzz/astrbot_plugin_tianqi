@@ -2,10 +2,6 @@
 
 一个为 AstrBot 平台设计的全功能天气插件，提供智能天气信息服务。
 
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=fuzzzzzz/astrbot_plugin_tianqi&type=Date)](https://star-history.com/#fuzzzzzz/astrbot_plugin_tianqi&Date)
-
 ## 功能特性
 
 - 🌤️ 实时天气查询
@@ -116,3 +112,7 @@ MIT License
 ## 贡献
 
 欢迎提交 Issue 和 Pull Request！
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=fuzzzzzz/astrbot_plugin_tianqi&type=Date)](https://star-history.com/#fuzzzzzz/astrbot_plugin_tianqi&Date)
